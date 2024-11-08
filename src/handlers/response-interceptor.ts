@@ -117,7 +117,7 @@ function copyHeaders(originalResponse, response): void {
       if (key === 'set-cookie') {
         // remove cookie domain
         value = Array.isArray(value) ? value : [value];
-        value = value.map((x) => x.replace(/Domain=[^;]+?/i, ''));
+        value = value.map((x) => x.replace(/Domain=[^;]+;?/i, "")).replace(/\s+/g, " ");
       }
 
       response.setHeader(key, value);
